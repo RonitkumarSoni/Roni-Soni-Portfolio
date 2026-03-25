@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-jakarta-sans);
+}
+
+:root {
+  --background: #0b0b0c;
+  --foreground: #ededed;
+  --accent: #f59e0b; /* Amber 500 */
+  --accent-rgb: 245, 158, 11; /* Used for hex alpha channels in JS */
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Ambient Edge Glow matching original portfolio */
+body::before {
+  content: "";
+  position: fixed;
+  top: -20vh;
+  right: -20vw;
+  width: 50vw;
+  height: 50vh;
+  background: radial-gradient(
+    circle,
+    rgba(var(--accent-rgb), 0.15) 0%,
+    rgba(var(--accent-rgb), 0.05) 40%,
+    transparent 80%
+  );
+  filter: blur(80px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  bottom: -20vh;
+  left: -20vw;
+  width: 50vw;
+  height: 50vh;
+  background: radial-gradient(
+    circle,
+    rgba(var(--accent-rgb), 0.1) 0%,
+    transparent 70%
+  );
+  filter: blur(100px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Base scrollbar styles */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* Base interactive elements cursor override */
+a, button, [role="button"], input, textarea, select {
+  cursor: none !important;
+}
